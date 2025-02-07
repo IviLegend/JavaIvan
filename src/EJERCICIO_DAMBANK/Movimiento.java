@@ -1,7 +1,6 @@
 package EJERCICIO_DAMBANK;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeFormatterBuilder;
 
 public class Movimiento
 {
@@ -11,7 +10,9 @@ public class Movimiento
 
     public Movimiento()
     {
-
+        importe = 0.0;
+        concepto = "Vacío";
+        fecha = "--/--/---- --:--";
     }
 
     public Movimiento(double importe, String concepto)

@@ -1,6 +1,5 @@
 package EJERCICIO_DAMBANK;
 
-
 import java.util.Random;
 
 public class CuentaBancaria
@@ -11,9 +10,10 @@ public class CuentaBancaria
     private double saldo;
     public Movimiento[] historialMovimientos;
 
-    static double saldoMinimo = -50;
-    static int registrosHistorial = 10;
-    static double movimientoSospechoso = 3000;
+    static final int maxCuentasBancarias = 3;
+    static final double saldoMinimo = -50;
+    static final int registrosHistorial = 10;
+    static final double movimientoSospechoso = 3000;
 
     /// CONSTRUCTORES
     public CuentaBancaria()
@@ -28,9 +28,18 @@ public class CuentaBancaria
         iban = generarIban();
         saldo = 0;
         historialMovimientos = new Movimiento[registrosHistorial];
+        inicializarMovimientos();
     }
 
     /// MÉTODOS
+    private void inicializarMovimientos()
+    {
+        for (int pos = 0; pos < registrosHistorial; pos++)
+        {
+            historialMovimientos[pos] = new Movimiento();
+        }
+    }
+
     public static String generarIban()
     {
         Random random = new Random();
@@ -121,10 +130,22 @@ public class CuentaBancaria
         }
     }
 
-    public void trasferencia(Movimiento movimiento, CuentaBancaria cuentaTransferencia)
+    public static boolean trasferencia(Movimiento movimiento, CuentaBancaria origen, CuentaBancaria destino)
     {
-        this.retirarDinero(movimiento);
-        cuentaTransferencia.ingresarDinero(movimiento);
+        boolean transaccionPosible = false;
+
+        if (origen.getSaldo() >= movimiento.getImporte())
+        {
+            origen.retirarDinero(movimiento);
+            destino.ingresarDinero(movimiento);
+            transaccionPosible = true;
+        }
+        else
+        {
+            System.err.println("Transacción fallida. No hay suficiente saldo");
+        }
+
+        return transaccionPosible;
     }
 
     public void actualizarHistorial(Movimiento movimiento)

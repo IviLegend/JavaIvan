@@ -22,9 +22,6 @@ public class DamBank
         DamBank damBank = new DamBank();
         Scanner scanner = new Scanner(System.in);
 
-        Movimiento movimiento = new Movimiento(100, "Prueba");
-        System.out.println(movimiento);
-
         System.out.print("Bienvenido, dime tu nombre y te crearé una cuenta en DamBank: ");
         String nombre = scanner.nextLine();
         System.out.print("Dime ahora tu apellido: ");
@@ -109,14 +106,24 @@ public class DamBank
                 case 5:
                 {
                     System.out.print("¿Cuánto dinero quieres ingresar? Introduce el valor: ");
-                    cuentaBancariaOpcion.ingresarDinero(scanner.nextDouble());
+                    double ingreso = scanner.nextDouble();
+                    scanner.nextLine();
+                    System.out.print("Introduce ahora el motivo: ");
+                    String motivo = scanner.nextLine();
+                    Movimiento movimiento = new Movimiento(ingreso, motivo);
+                    cuentaBancariaOpcion.ingresarDinero(movimiento);
                     break;
                 }
 
                 case 6:
                 {
                     System.out.print("¿Cuánto dinero quieres retirar? Introduce el valor: ");
-                    cuentaBancariaOpcion.retirarDinero(scanner.nextDouble());
+                    double ingreso = scanner.nextDouble();
+                    scanner.nextLine();
+                    System.out.print("Introduce ahora el motivo: ");
+                    String motivo = scanner.nextLine();
+                    Movimiento movimiento = new Movimiento(ingreso, motivo);
+                    cuentaBancariaOpcion.retirarDinero(movimiento);
                     break;
                 }
 
@@ -126,13 +133,19 @@ public class DamBank
 
                     for (int i = 0; i < CuentaBancaria.registrosHistorial; i++)
                     {
-                        System.out.printf("%d. %.2f\n", (i + 1), cuentaBancariaOpcion.historialMovimientos[i]);
+                        System.out.printf("%d. %s\n", (i + 1), cuentaBancariaOpcion.historialMovimientos[i]);
                     }
 
                     break;
                 }
 
                 case 8:
+                {
+                    cuentaBancariaOpcion.getTitular().crearCuentaNueva();
+                    break;
+                }
+
+                case 9:
                 {
                     System.out.println("¡Adiós!");
                     System.exit(0);
