@@ -1,0 +1,173 @@
+package EJERCICIO_DAMBANK;
+
+
+import java.util.Random;
+
+public class CuentaBancaria
+{
+    /// ATRIBUTOS
+    private String iban;
+    private Persona titular;
+    private double saldo;
+    public Movimiento[] historialMovimientos;
+
+    static double saldoMinimo = -50;
+    static int registrosHistorial = 10;
+    static double movimientoSospechoso = 3000;
+
+    /// CONSTRUCTORES
+    public CuentaBancaria()
+    {
+
+    }
+
+    public CuentaBancaria(Persona titular)
+    {
+        this.titular = titular;
+
+        iban = generarIban();
+        saldo = 0;
+        historialMovimientos = new Movimiento[registrosHistorial];
+    }
+
+    /// MÉTODOS
+    public static String generarIban()
+    {
+        Random random = new Random();
+        String ibanGenerado = "";
+
+        String[] abecedario = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"};
+
+        for (int i = 0; i < 2; i++)
+        {
+            int numeroRandom = random.nextInt(abecedario.length);
+            ibanGenerado += abecedario[numeroRandom];
+        }
+
+        for (int i = 0; i < 22; i++)
+        {
+            int numeroRandom = random.nextInt(10);
+            ibanGenerado += String.valueOf(numeroRandom);
+        }
+
+        return ibanGenerado;
+    }
+
+    /**
+     * @return
+     * <ul>
+     *     <li>{@code true} - Si el IBAN es válido</li>
+     *     <li>{@code false} - Si el IBAN no es válido</li>
+     * </ul>
+     */
+    public static boolean ibanValido(String ibanParaComprobar)
+    {
+        String regex = "^[A-Z]{2}\\d{22}$";
+
+        if ((ibanParaComprobar.length() != 24) || !(ibanParaComprobar.matches(regex)))
+            return false;
+        else
+            return true;
+    }
+
+    public String getIban()
+    {
+        return this.iban;
+    }
+
+    public Persona getTitular()
+    {
+        return this.titular;
+    }
+
+    public double getSaldo()
+    {
+        return this.saldo;
+    }
+
+    public void actualizarSaldo(double saldo)
+    {
+        this.saldo += saldo;
+    }
+
+    public void ingresarDinero(Movimiento movimiento)
+    {
+        double ingreso = Math.abs(movimiento.getImporte());
+        comprobarTransaccion(ingreso);
+        actualizarSaldo(ingreso);
+        actualizarHistorial(movimiento);
+    }
+
+    public void retirarDinero(Movimiento movimiento)
+    {
+        comprobarTransaccion(movimiento.getImporte());
+
+        double ingreso = (Math.abs(movimiento.getImporte()) * -1);
+
+        if ((getSaldo() + ingreso) < saldoMinimo)
+        {
+            System.err.println("AVISO: Saldo negativo");
+        }
+
+        actualizarSaldo(ingreso);
+        actualizarHistorial(movimiento);
+    }
+
+    public void comprobarTransaccion(double saldo)
+    {
+        if (saldo >= movimientoSospechoso)
+        {
+            System.err.println("AVISO: Notificando a Hacienda.");
+        }
+    }
+
+    public void trasferencia(Movimiento movimiento, CuentaBancaria cuentaTransferencia)
+    {
+        this.retirarDinero(movimiento);
+        cuentaTransferencia.ingresarDinero(movimiento);
+    }
+
+    public void actualizarHistorial(Movimiento movimiento)
+    {
+        int primeraPosicionVacia = getPrimeraPosicionVacia();
+
+        // Si no encuentra ninguna porque ya está lleno, elimina la más antigua y mueve todas uno para abajo
+        if (primeraPosicionVacia == -1)
+        {
+            for (int i = 0; i < registrosHistorial; i++)
+            {
+                if (i != (registrosHistorial - 1)) { historialMovimientos[i] = historialMovimientos[i + 1]; }
+                else
+                {
+                    historialMovimientos[i].setImporte(0);
+                    historialMovimientos[i].setConcepto("");
+                }
+            }
+
+            primeraPosicionVacia = getPrimeraPosicionVacia();
+        }
+
+        historialMovimientos[primeraPosicionVacia] = movimiento;
+    }
+
+    private int getPrimeraPosicionVacia()
+    {
+        int primeraPosicionVacia = -1;
+
+        // Busca la primera posición libre
+        for (int i = 0; i < registrosHistorial; i++)
+        {
+            if (historialMovimientos[i].getImporte() == 0)
+            {
+                primeraPosicionVacia = i;
+                break;
+            }
+        }
+        return primeraPosicionVacia;
+    }
+
+    public String toString()
+    {
+        return "IBAN: " + iban + " | Titular: " + titular + " | Saldo: " + saldo;
+    }
+}
