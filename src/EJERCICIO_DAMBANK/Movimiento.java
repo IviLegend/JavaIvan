@@ -20,7 +20,7 @@ public class Movimiento
         this.importe = importe;
         this.concepto = concepto;
 
-        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy hh:mm");
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy hh:mm:ss");
         fecha = LocalDateTime.now().format(dateTimeFormatter);
     }
 

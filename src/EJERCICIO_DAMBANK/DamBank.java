@@ -56,7 +56,7 @@ public class DamBank
 
     public void mostrarMenu(CuentaBancaria cuentaBancariaCreada)
     {
-        System.out.printf("** BIENVENIDO A DAMBANK, %s **\n", cuentaBancariaCreada.getTitular().toString().toUpperCase().trim());
+        System.out.printf("** BIENVENIDO A DAMBANK, %s **\n", cuentaBancariaCreada.getTitular().getNombreApellido().toUpperCase().trim());
         System.out.println("Escriba el número de la opción que quiera hacer: ");
         System.out.println("1. Mostrar datos de la cuenta.");
         System.out.println("2. Mostrar el IBAN.");
@@ -115,7 +115,7 @@ public class DamBank
                     scanner.nextLine();
                     System.out.print("Introduce ahora el motivo: ");
                     String motivo = scanner.nextLine();
-                    Movimiento movimiento = new Movimiento(ingreso, motivo);
+                    Movimiento movimiento = new Movimiento(Math.abs(ingreso), motivo);
                     cuentaBancariaOpcion.ingresarDinero(movimiento);
                     break;
                 }
@@ -127,7 +127,7 @@ public class DamBank
                     scanner.nextLine();
                     System.out.print("Introduce ahora el motivo: ");
                     String motivo = scanner.nextLine();
-                    Movimiento movimiento = new Movimiento(ingreso, motivo);
+                    Movimiento movimiento = new Movimiento(Math.abs(ingreso) * -1, motivo);
                     cuentaBancariaOpcion.retirarDinero(movimiento);
                     break;
                 }

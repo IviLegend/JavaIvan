@@ -26,7 +26,29 @@ public class Persona
     public static boolean dniValido(String dni)
     {
         String dniRegex = "^[0-9]{8}[A-HJ-NP-TV-Z]$";
-        return dni.matches(dniRegex);
+
+        if (dni.matches(dniRegex))
+        {
+            String[] letrasDNI = {"T", "R", "W", "A", "G", "M", "Y", "F", "P", "D", "X", "B", "N", "J", "Z", "S", "Q", "V", "H", "L", "C", "K", "E"};
+            String letraDni = Character.toString(dni.charAt(8));
+            int numeroDni = Integer.parseInt(dni.substring(0, 8));
+            int moduloDni = numeroDni % 23;
+
+            if (letrasDNI[moduloDni].equalsIgnoreCase(letraDni))
+            {
+                return true;
+            }
+            else
+            {
+                System.err.println("¡La letra no es válida!");
+                return false;
+            }
+        }
+        else
+        {
+            System.err.println("¡Tu DNI no es válido!");
+            return false;
+        }
     }
 
     public String getDni()
@@ -112,8 +134,13 @@ public class Persona
         }
     }
 
-    public String toString()
+    public String getNombreApellido()
     {
         return nombre + " " + apellido;
+    }
+
+    public String toString()
+    {
+        return nombre + " " + apellido + " | DNI: " + dni;
     }
 }
