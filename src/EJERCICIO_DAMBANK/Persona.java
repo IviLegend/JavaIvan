@@ -67,11 +67,49 @@ public class Persona
         return tieneSaldoNegativo;
     }
 
-    public void crearCuentaNueva()
+    public CuentaBancaria crearCuentaNueva(Persona persona)
     {
-        CuentaBancaria cuentaConMasDinero = null;
+        CuentaBancaria cuentaConMasDinero = persona.cuentas[0];
 
-        cuentas[1] = new CuentaBancaria(this);
+        int primerEspacioVacio = 0;
+
+        for (int i = 0; i < cuentas.length; i++)
+        {
+            if (cuentas[i] == null)
+            {
+                primerEspacioVacio = i;
+                break;
+            }
+        }
+
+        /*for (int i = 0; i < cuentas.length; i++)
+        {
+            if (cuentas[i] != null)
+            {
+                if (cuentas[i].getSaldo() > cuentaConMasDinero.getSaldo())
+                {
+                    cuentaConMasDinero = cuentas[i];
+                }
+            }
+        }*/
+
+        cuentas[primerEspacioVacio] = new CuentaBancaria(persona);
+
+        return cuentas[primerEspacioVacio];
+    }
+
+    public void mostrarCuentas()
+    {
+        int index = 1;
+
+        for (int pos = 0; pos < cuentas.length; pos++)
+        {
+            if (cuentas[pos] != null)
+            {
+                System.out.printf("%d. %s\n", index, cuentas[pos]);
+                index++;
+            }
+        }
     }
 
     public String toString()

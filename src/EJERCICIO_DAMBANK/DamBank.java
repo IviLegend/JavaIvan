@@ -42,20 +42,21 @@ public class DamBank
         Persona persona = new Persona(nombre, apellido, dni);
 
         System.out.println();
-        CuentaBancaria cuentaBancariaIvan = new CuentaBancaria(persona);
+        persona.cuentas[0] = persona.crearCuentaNueva(persona);
 
         int opcion = -1;
+        int cuentaElegida = 0;
 
-        while (opcion != 8)
+        while (opcion != 10)
         {
-            damBank.mostrarMenu(cuentaBancariaIvan);
-            opcion = damBank.elegirOpcion(cuentaBancariaIvan);
+            damBank.mostrarMenu(persona.cuentas[cuentaElegida]);
+            opcion = damBank.elegirOpcion(persona.cuentas[cuentaElegida]);
         }
     }
 
     public void mostrarMenu(CuentaBancaria cuentaBancariaCreada)
     {
-        System.out.printf("** BIENVENIDO A DAMBANK, %s **\n", cuentaBancariaCreada.getTitular().toString().toUpperCase());
+        System.out.printf("** BIENVENIDO A DAMBANK, %s **\n", cuentaBancariaCreada.getTitular().toString().toUpperCase().trim());
         System.out.println("Escriba el número de la opción que quiera hacer: ");
         System.out.println("1. Mostrar datos de la cuenta.");
         System.out.println("2. Mostrar el IBAN.");
@@ -64,8 +65,12 @@ public class DamBank
         System.out.println("5. Ingresar dinero.");
         System.out.println("6. Retirar dinero.");
         System.out.println("7. Mostrar el historial de movimientos.");
-        System.out.println("8. Salir");
+        System.out.println("8. Crear cuenta nueva");
+        System.out.println("9. Cambiar de cuenta");
+        System.out.println("10. Salir");
     }
+
+
 
     public int elegirOpcion(CuentaBancaria cuentaBancariaOpcion)
     {
@@ -141,11 +146,18 @@ public class DamBank
 
                 case 8:
                 {
-                    cuentaBancariaOpcion.getTitular().crearCuentaNueva();
+                    cuentaBancariaOpcion.getTitular().crearCuentaNueva(cuentaBancariaOpcion.getTitular());
                     break;
                 }
 
                 case 9:
+                {
+                    System.out.println("¿A qué cuenta quieres cambiar?");
+                    cuentaBancariaOpcion.getTitular().mostrarCuentas();
+                    break;
+                }
+
+                case 10:
                 {
                     System.out.println("¡Adiós!");
                     System.exit(0);
@@ -158,7 +170,6 @@ public class DamBank
                 }
             }
         }
-
 
         return opcionElegida;
     }

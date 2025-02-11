@@ -187,6 +187,27 @@ public class CuentaBancaria
         return primeraPosicionVacia;
     }
 
+    private String censurarString(String cadenaACensurar)
+    {
+        String caracterCensura = "*";
+
+        String ibanCensurado = "";
+
+        for (int i = 0; i < cadenaACensurar.length(); i++)
+        {
+            if ((i < 4) || (i > cadenaACensurar.length() - 3))
+            {
+                ibanCensurado += cadenaACensurar.charAt(i);
+            }
+            else
+            {
+                ibanCensurado += caracterCensura;
+            }
+        }
+
+        return ibanCensurado;
+    }
+
     public String toString()
     {
         return "IBAN: " + iban + " | Titular: " + titular + " | Saldo: " + saldo;
