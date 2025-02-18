@@ -104,7 +104,7 @@ public class Persona
             }
         }
 
-        /*for (int i = 0; i < cuentas.length; i++)
+        for (int i = 0; i < cuentas.length; i++)
         {
             if (cuentas[i] != null)
             {
@@ -113,9 +113,20 @@ public class Persona
                     cuentaConMasDinero = cuentas[i];
                 }
             }
-        }*/
+        }
 
-        cuentas[primerEspacioVacio] = new CuentaBancaria(persona);
+        /*if ((cuentaConMasDinero.getSaldo() > 0) || (cuentas[primerEspacioVacio] == null))
+        {*/
+            cuentas[primerEspacioVacio] = new CuentaBancaria(persona);
+            if (cuentas[0] != null)
+            {
+                CuentaBancaria.trasferencia(new Movimiento(cuentas[0].getSaldo() * 0.1, "Creación de cuenta"), cuentas[0], cuentas[1]);
+            }
+        /*}
+        else
+        {
+            return null;
+        }*/
 
         return cuentas[primerEspacioVacio];
     }

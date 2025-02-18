@@ -1,22 +1,9 @@
 package EJERCICIO_DAMBANK;
 
-import java.sql.SQLOutput;
 import java.util.Scanner;
 
 public class DamBank
 {
-    /*
-        MENU
-        1. Datos de la cuenta. Mostrará el IBAN, el
-        titular y el saldo.
-        2. IBAN. Mostrará el IBAN.
-        3. Titular. Mostrará el titular.
-        4. Saldo. Mostrará el saldo disponible.
-        5. Ingreso. Pedirá la cantidad a ingresar y realizará el ingreso si es posible.
-        6. Retirada. Pedirá la cantidad a retirar y realizará la retirada si es posible.
-        7. Movimientos. Mostrará una lista con el historial de movimientos.
-        8. Salir. Termina el programa.
-    */
     public static void main(String[] args)
     {
         DamBank damBank = new DamBank();
@@ -54,6 +41,11 @@ public class DamBank
         }
     }
 
+    /**
+     * Muestra el menú con las posibles acciones
+     * @param cuentaBancariaCreada La cuenta bancaria que está accediendo al menú
+     * @author IviLegend
+     */
     public void mostrarMenu(CuentaBancaria cuentaBancariaCreada)
     {
         System.out.printf("** BIENVENIDO A DAMBANK, %s **\n", cuentaBancariaCreada.getTitular().getNombreApellido().toUpperCase().trim());
@@ -69,8 +61,6 @@ public class DamBank
         System.out.println("9. Cambiar de cuenta");
         System.out.println("10. Salir");
     }
-
-
 
     public int elegirOpcion(CuentaBancaria cuentaBancariaOpcion)
     {
@@ -146,7 +136,11 @@ public class DamBank
 
                 case 8:
                 {
-                    cuentaBancariaOpcion.getTitular().crearCuentaNueva(cuentaBancariaOpcion.getTitular());
+                    CuentaBancaria cuentaACrear = cuentaBancariaOpcion.getTitular().crearCuentaNueva(cuentaBancariaOpcion.getTitular());
+                    if (cuentaACrear != null)
+                    {
+                        cuentaBancariaOpcion.getTitular().cuentas[1] = cuentaACrear;
+                    }
                     break;
                 }
 

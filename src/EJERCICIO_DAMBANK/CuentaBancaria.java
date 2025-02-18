@@ -187,6 +187,17 @@ public class CuentaBancaria
         return primeraPosicionVacia;
     }
 
+    public void buscarMovimiento(String busqueda)
+    {
+        for (int i = 0; i < registrosHistorial; i++)
+        {
+            if (historialMovimientos[i].getConcepto().contains(busqueda))
+            {
+                System.out.println(historialMovimientos[i]);
+            }
+        }
+    }
+
     private String censurarString(String cadenaACensurar)
     {
         String caracterCensura = "*";

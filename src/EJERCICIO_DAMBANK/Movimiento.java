@@ -15,6 +15,11 @@ public class Movimiento
         fecha = "--/--/---- --:--";
     }
 
+    public String getConcepto()
+    {
+        return concepto;
+    }
+
     public Movimiento(double importe, String concepto)
     {
         this.importe = importe;
