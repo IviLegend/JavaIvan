@@ -1,6 +1,6 @@
 package Pokemon;
 
-import java.sql.SQLOutput;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
@@ -83,14 +83,14 @@ public class CombatePokemon
 
         Ataque placaje = new Ataque("Placaje", ClaseAtaque.FISICO, Tipo.NORMAL, 40, 100, 35);
         Ataque latigoCepa = new Ataque("Látigo Cepa",  ClaseAtaque.FISICO, Tipo.PLANTA, 45, 100, 25);
-        Ataque grunido = new Ataque("Gruñido",  ClaseAtaque.ESPECIAL, Tipo.NORMAL, 100, 40, 1, 0);
-        Ataque drenadoras = new Ataque("Drenadoras", ClaseAtaque.ESPECIAL,  Tipo.PLANTA, 90, 10, 2, 0);
+        Ataque grunido = new Ataque("Gruñido", Tipo.NORMAL, 100, 40, 1, ClaseAtaque.ESPECIAL);
+        Ataque drenadoras = new Ataque("Drenadoras", Tipo.PLANTA, 90, 10, 2, ClaseAtaque.ESPECIAL);
         Ataque aranazo = new Ataque("Arañazo", ClaseAtaque.FISICO, Tipo.NORMAL, 40, 100, 35);
         Ataque ascuas = new Ataque("Ascuas", ClaseAtaque.FISICO, Tipo.FUEGO, 40, 100, 25);
-        Ataque pantallaDeHumo = new Ataque("Pantalla de Humo", ClaseAtaque.ESPECIAL, Tipo.NORMAL, 100, 20, 5, 0);
-        Ataque latigo = new Ataque("Látigo", ClaseAtaque.ESPECIAL, Tipo.NORMAL, 100, 35, 3, 0);
+        Ataque pantallaDeHumo = new Ataque("Pantalla de Humo", Tipo.NORMAL, 100, 20, 5, ClaseAtaque.ESPECIAL);
+        Ataque latigo = new Ataque("Látigo", Tipo.NORMAL, 100, 35, 3, ClaseAtaque.ESPECIAL);
         Ataque pistolaAgua = new Ataque("Pistola Agua", ClaseAtaque.FISICO, Tipo.AGUA, 40, 100, 25);
-        Ataque refugio = new Ataque("Refugio", ClaseAtaque.ESPECIAL, Tipo.AGUA, 100, 40, 4, 0);
+        Ataque refugio = new Ataque("Refugio", Tipo.AGUA, 100, 40, 4, ClaseAtaque.ESPECIAL);
         Ataque ataqueRapido = new Ataque("Ataque Rápido", ClaseAtaque.FISICO, Tipo.NORMAL, 40, 100, 30);
         Ataque impactrueno = new Ataque("Impactrueno", ClaseAtaque.FISICO, Tipo.ELECTRICO, 40, 100, 30);
 
@@ -99,15 +99,25 @@ public class CombatePokemon
         Pokemon squirtle = new Pokemon("Squirtle", Tipo.AGUA, 1, 44, 48, 65, 50, 43, placaje, latigo, pistolaAgua, refugio);
         Pokemon pikachu = new Pokemon("Pikachu", Tipo.ELECTRICO, 1, 35, 55, 40, 90, 50, ataqueRapido, latigo, impactrueno, grunido);
 
+        Pokemon rowlet = new Pokemon("Rowlet", Tipo.PLANTA, 1, 40, 40, 40, 40, 40, placaje, drenadoras, latigoCepa, aranazo);
+
         Pokemon pokemonAtacante = null;
         Pokemon pokemonDefensor = null;
+
+        ArrayList<Pokemon> listaPokemon = new ArrayList<>();
+
+        listaPokemon.add(bulbasaur);
+        listaPokemon.add(charmander);
+        listaPokemon.add(squirtle);
+        listaPokemon.add(pikachu);
+        listaPokemon.add(1, rowlet);
 
         /// BIENVENIDA
         System.out.println("¡Hola entrenador!, dime tu nombre: ");
         nombre = scanner.nextLine();
 
         System.out.println("¡Encantado de conocerte " + nombre + "! Vamos a elegir un Pokémon para tí. ¡Escribe una de las opciones!");
-        System.out.println("Bulbasaur | Charmander | Squirtle");
+        System.out.println(listaPokemon);
 
         boolean opcionValida = false;
 
@@ -118,6 +128,7 @@ public class CombatePokemon
             switch (respuesta)
             {
                 case "bulbasaur" -> pokemonAtacante = bulbasaur;
+                case "rowlet" -> pokemonAtacante = rowlet;
                 case "charmander" -> pokemonAtacante = charmander;
                 case "squirtle" -> pokemonAtacante = squirtle;
                 case "pikachu" -> pokemonAtacante = pikachu;

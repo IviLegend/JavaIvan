@@ -26,7 +26,7 @@ public class Ataque
     }
 
     // Ataque especial
-    public Ataque(String nombreInicial, ClaseAtaque claseAtaqueInicial, Tipo tipoAtaque, int precisionInicial, int PPInicial, int idEspecialInicial, int valorInventadoParaQueElMundoNoColapse)
+    public Ataque(String nombreInicial, Tipo tipoAtaque, int precisionInicial, int PPInicial, int idEspecialInicial, ClaseAtaque claseAtaqueInicial)
     {
         nombre = nombreInicial;
         claseAtaque = claseAtaqueInicial;

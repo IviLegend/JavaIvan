@@ -34,5 +34,10 @@ public class Pokemon
         ataques[2] = ataque3Inicial;
         ataques[3] = ataque4Inicial;
     }
+
+    public String toString()
+    {
+        return this.nombre;
+    }
 }
 
