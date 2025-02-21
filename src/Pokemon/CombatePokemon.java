@@ -8,7 +8,6 @@ import java.util.Scanner;
 public class CombatePokemon
 {
     public static Random random = new Random();
-
     public static Scanner scanner = new Scanner(System.in);
 
     public static String nombre;
@@ -116,7 +115,7 @@ public class CombatePokemon
         System.out.println("¡Hola entrenador!, dime tu nombre: ");
         nombre = scanner.nextLine();
 
-        System.out.println("¡Encantado de conocerte " + nombre + "! Vamos a elegir un Pokémon para tí. ¡Escribe una de las opciones!");
+        System.out.printf("¡Encantado de conocerte %s! Vamos a elegir un Pokémon para tí. ¡Escribe una de las opciones!\n", nombre);
         System.out.println(listaPokemon);
 
         boolean opcionValida = false;
@@ -154,8 +153,8 @@ public class CombatePokemon
             case 4 -> pokemonDefensor = pikachu;
         }
 
-        System.out.println("¡" + nombreRival + " te reta a un combate!");
-        System.out.println(nombreRival + " saca a " + pokemonDefensor.nombre);
+        System.out.printf("¡%s te reta a un combate!\n", nombreRival);
+        System.out.printf("%s saca a %s\n", nombreRival, pokemonDefensor);
 
         // Elige el ataque
 
@@ -184,11 +183,8 @@ public class CombatePokemon
                     int numeroAtaque = scanner.nextInt();
                     ataqueElegido = pokemonAtacante.ataques[numeroAtaque-1];
 
-                    if (ataqueElegido.PP <= 0)
-                    {
-                        System.out.println("¡No tienes PP!");
-                        ataqueValido = false;
-                    } else ataqueValido = true;
+                    if (ataqueElegido.PP <= 0) { System.out.println("¡No tienes PP!"); }
+                    else { ataqueValido = true; }
                 }
 
                 // Ver si ha acertado o no
