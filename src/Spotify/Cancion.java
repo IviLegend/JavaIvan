@@ -1,5 +1,7 @@
 package Spotify;
 
+import java.util.Objects;
+
 public class Cancion
 {
     /// ATRIBUTOS
@@ -95,5 +97,23 @@ public class Cancion
     public String toString()
     {
         return String.format("%s (%d:%d)", nombre, obtenerMinutos(), obtenerSegundos());
+    }
+
+    @Override
+    public boolean equals(Object obj)
+    {
+        if ((obj == null) || (getClass() != obj.getClass()))
+        {
+            return false;
+        }
+
+        Cancion cancion = (Cancion) obj;
+        return Objects.equals(nombre, cancion.nombre);
+    }
+
+    @Override
+    public int hashCode()
+    {
+        return Objects.hashCode(nombre);
     }
 }

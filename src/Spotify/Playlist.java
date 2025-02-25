@@ -29,8 +29,16 @@ public class Playlist
 
     public boolean agregarCancion(Cancion nueva)
     {
-        listaCanciones.add(nueva);
-        return true;
+        if (listaCanciones.contains(nueva))
+        {
+            System.err.printf("La canción %s ya está en la lista\n", nueva.getNombre());
+            return false;
+        }
+        else
+        {
+            listaCanciones.add(nueva);
+            return true;
+        }
     }
 
     public boolean eliminarCancion(String tituloCancion)
