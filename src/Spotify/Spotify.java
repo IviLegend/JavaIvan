@@ -10,10 +10,18 @@ public class Spotify
         Cancion megalovaniaSmash = new Cancion("Megalovania Remix", 330, "Synth", 2020, false);
 
         Playlist miPlaylist = new Playlist("Playlist increíble");
-        miPlaylist.agregarCancion(myTime);
-        miPlaylist.agregarCancion(myWay);
-        miPlaylist.agregarCancion(megalovania);
-        miPlaylist.agregarCancion(megalovaniaSmash);
+        Spotify.mostrarMenu();
+
         miPlaylist.mostrarCancionesPlaylist();
+
+    }
+
+    public static void mostrarMenu()
+    {
+        System.out.println("== BIENVENIDO A SPOTIFY ==");
+        System.out.println("¿Qué quieres hacer?");
+        System.out.println("1. Mostrar playlist");
+        System.out.println("2. Añadir canción");
+        System.out.println("3. Eliminar canción");
     }
 }

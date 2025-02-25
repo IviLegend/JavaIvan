@@ -51,6 +51,7 @@ public class Playlist
                 return true;
             }
         }
+        System.err.printf("La canción %s no se ha encontrado en la lista", tituloCancion);
         return false;
     }
 
