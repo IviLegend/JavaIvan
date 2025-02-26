@@ -22,7 +22,7 @@ public class ProgramaEstudiantes
         ProgramaEstudiantes programa = new ProgramaEstudiantes();
 
         Estudiante ivan = new Estudiante("Ivan", "Gomez", "123", 18, 1);
-        Estudiante nico = new Estudiante("Nicoleta", "Grigoras", "456", 19, 1);
+        EstudianteExtranjero nico = new EstudianteExtranjero("Nicoleta", "Grigoras", "456", 19, 1, "Moldavia");
         Estudiante victor = new Estudiante("Victor", "Villaescusa", "789", 21, 1);
 
         Estudiante[] listaEstudiantes = {ivan, nico, victor};
@@ -57,6 +57,7 @@ public class ProgramaEstudiantes
                 if (dniRecibido.equalsIgnoreCase("salir")) { System.out.println("Saliendo..."); System.exit(1); }
                 if (dniRecibido.equalsIgnoreCase("buscar"))
                 {
+                    // TODO: Arreglar racismo
                     System.out.println("Dime el DNI del alumno que quieras buscar y te digo su nombre y su posición en la lista: ");
                     String dniBuscado = scanner.nextLine();
                     Estudiante estudianteBuscado = new Estudiante("", "", dniBuscado, 0, 0);
@@ -93,7 +94,11 @@ public class ProgramaEstudiantes
 
         for (int i = 0; i < lista.size(); i++)
         {
-            System.out.printf("%d. %s\n", i+1, lista.get(i));
+            if (lista.get(i) instanceof EstudianteExtranjero)
+            {
+                System.out.printf("%d. [%s] %s\n", i + 1, ((EstudianteExtranjero) lista.get(i)).nacionalidad, lista.get(i));
+            }
+            else { System.out.printf("%d. %s\n", i + 1, lista.get(i)); }
         }
     }
 }
