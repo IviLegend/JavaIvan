@@ -57,7 +57,6 @@ public class ProgramaEstudiantes
                 if (dniRecibido.equalsIgnoreCase("salir")) { System.out.println("Saliendo..."); System.exit(1); }
                 if (dniRecibido.equalsIgnoreCase("buscar"))
                 {
-                    // TODO: Arreglar racismo
                     System.out.println("Dime el DNI del alumno que quieras buscar y te digo su nombre y su posición en la lista: ");
                     String dniBuscado = scanner.nextLine();
                     Estudiante estudianteBuscado = new Estudiante("", "", dniBuscado, 0, 0);

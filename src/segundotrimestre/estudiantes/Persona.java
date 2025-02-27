@@ -28,7 +28,7 @@ public abstract class Persona
     @Override
     public boolean equals(Object o)
     {
-        if (o == null || getClass() != o.getClass()) return false;
+        if (o == null) return false;
         Persona persona = (Persona) o;
         return Objects.equals(dni, persona.dni);
     }
