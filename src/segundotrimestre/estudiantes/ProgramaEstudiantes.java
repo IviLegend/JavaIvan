@@ -29,7 +29,7 @@ public class ProgramaEstudiantes
 
         while (true)
         {
-            System.out.println("Dime el DNI del estudiante que quieras añadir\n(pon 'LISTA' para mostrar la lista o 'SALIR' para salir): ");
+            System.out.println("Dime el DNI del estudiante que quieras añadir\n(También puedes escribir:\n'LISTA' para mostrar la lista\n'SALIR' para salir\n'BUSCAR' para buscar estudiante): ");
             String dniRecibido = scanner.nextLine();
             Estudiante estudianteAnadir = null;
 
