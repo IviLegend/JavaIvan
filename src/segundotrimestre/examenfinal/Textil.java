@@ -20,7 +20,7 @@ public class Textil extends Producto
     @Override
     public double calcularPrecioFinal(double porcentajeDescuento)
     {
-        if (material.equalsIgnoreCase("algodón")) { porcentajeDescuento = 2.5; }
+        if (Utilidades.quitarTildes(material).equalsIgnoreCase("algodon")) { porcentajeDescuento = 2.5; }
         return super.calcularPrecioFinal(porcentajeDescuento);
     }
 
