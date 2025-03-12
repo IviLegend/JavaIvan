@@ -8,7 +8,7 @@ public class Utilidades
         return valor ? "Sí" : "No";
     }
 
-    public static String quitarTildes(String cadena)
+    public static String quitarTildesAntiguo(String cadena)
     {
         String cadenaSinTildes = "";
         for (int i = 0; i < cadena.length(); i++)
@@ -31,5 +31,13 @@ public class Utilidades
             }
         }
         return cadenaSinTildes;
+    }
+
+    public static String quitarTildes(String cadena)
+    {
+        return cadena.replace("á", "a").replace("é", "e").replace("í", "i")
+                .replace("ó", "o").replace("ú", "u")
+                .replace("Á", "A").replace("É", "E").replace("Í", "I")
+                .replace("Ó", "O").replace("Ú", "U");
     }
 }
