@@ -70,7 +70,7 @@ public class Tienda
             Producto actual = catalogo.get(posicion);
 
             // Primero mostramos la infomración general
-            double precioFinal = actual.calcularPrecioFinal(actual.getPrecio(), PORCENTAJE_DESCUENTO_BASE);
+            double precioFinal = actual.calcularPrecioFinal(PORCENTAJE_DESCUENTO_BASE);
             String simboloEuro = "€";
             System.out.printf("\n%d. (%.2f%s) ", posicion + 1, precioFinal, simboloEuro);
 
@@ -116,7 +116,7 @@ public class Tienda
         double precioTotal = 0.0;
         for (Producto producto : catalogo)
         {
-            precioTotal += producto.calcularPrecioFinal(producto.getPrecio(), PORCENTAJE_DESCUENTO_BASE);
+            precioTotal += producto.calcularPrecioFinal(PORCENTAJE_DESCUENTO_BASE);
         }
         return precioTotal;
     }

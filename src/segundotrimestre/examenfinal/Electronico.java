@@ -20,11 +20,11 @@ public class Electronico extends Producto
     /// MÉTODOS
     // MÉTODOS PROPIOS
     @Override
-    public double calcularPrecioFinal(double precioInicial, double porcentajeDescuento)
+    public double calcularPrecioFinal(double porcentajeDescuento)
     {
         if (mesesGarantia < 6) { porcentajeDescuento = 10.0; }
         else { porcentajeDescuento = 5.0; }
-        return super.calcularPrecioFinal(precioInicial, porcentajeDescuento);
+        return super.calcularPrecioFinal(porcentajeDescuento);
     }
 
     // TOSTRING

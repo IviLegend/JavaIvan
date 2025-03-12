@@ -18,10 +18,10 @@ public class Textil extends Producto
     /// MÉTODOS
     // MÉTODOS PROPIOS
     @Override
-    public double calcularPrecioFinal(double precioInicial, double porcentajeDescuento)
+    public double calcularPrecioFinal(double porcentajeDescuento)
     {
         if (material.equalsIgnoreCase("algodón")) { porcentajeDescuento = 2.5; }
-        return super.calcularPrecioFinal(precioInicial, porcentajeDescuento);
+        return super.calcularPrecioFinal(porcentajeDescuento);
     }
 
     // TOSTRING

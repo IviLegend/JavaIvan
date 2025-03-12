@@ -19,9 +19,9 @@ public class Producto
 
     /// MÉTODOS
     // MÉTODOS PROPIOS
-    public double calcularPrecioFinal(double precioInicial, double porcentajeDescuento)
+    public double calcularPrecioFinal(double porcentajeDescuento)
     {
-        return (precioInicial - (precioInicial * (porcentajeDescuento / 100)));
+        return (precio - (precio * (porcentajeDescuento / 100)));
     }
 
     // GETTERS Y SETTERS
