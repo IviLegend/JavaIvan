@@ -2,7 +2,7 @@ package segundotrimestre.examenfinal;
 
 import java.util.Objects;
 
-public class Producto
+public abstract class Producto
 {
     /// ATRIBUTOS
     private String nombre;
