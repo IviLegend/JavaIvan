@@ -6,10 +6,17 @@ public class Pokemon implements PokemonData
 {
     /// FIELDS
     public PokemonData pokemonData;
-    private String name;
-    private int level;
+    private String name = PokemonData.name;
+    private int level = 1;
 
     private Nature nature;
+
+    private int healthPoints = calculateHealthPoints();
+    private int attack = calculateOtherStat(1);
+    private int defense = calculateOtherStat(2);
+    private int specialAttack = calculateOtherStat(3);
+    private int specialDefense = calculateOtherStat(4);
+    private int speed = calculateOtherStat(5);
 
     // Individual Values (IVs)
     private int ivHealthPoints;
@@ -34,19 +41,88 @@ public class Pokemon implements PokemonData
     /// METHODS
     private int calculateHealthPoints()
     {
-        return ((((2 * initialHealthPoints) + ivHealthPoints + (evHealthPoints/4)) * level)/100)+level+10;
+        return ((((2 * initialHealthPoints) + ivHealthPoints + (evHealthPoints / 4)) * level) / 100) + level + 10;
     }
 
     private int calculateOtherStat(int statIndex)
     {
-        return (int)((((((2 * initialHealthPoints) + ivHealthPoints + (evHealthPoints/4)) * level)/100)+5)*calculateNatureBonus(statIndex));
+        return (int)((((((2 * initialHealthPoints) + ivHealthPoints + (evHealthPoints / 4)) * level) / 100) + 5) * calculateNatureBonus(statIndex));
+    }
+
+    private void levelUp()
+    {
+        level++;
+        healthPoints = calculateHealthPoints();
+        attack = calculateOtherStat(1);
+        defense = calculateOtherStat(2);
+        specialAttack = calculateOtherStat(3);
+        specialDefense = calculateOtherStat(4);
+        speed = calculateOtherStat(5);
     }
 
     private double calculateNatureBonus(int statIndex)
     {
-        switch(nature)
+        double favorable = 1.1;
+        double unfavorable = 1.1;
+        double neutral = 1.0;
+
+        switch (statIndex)
         {
-            case LAX ->
+            case 1: // Attack
+            {
+                Nature[] strongAttack = {Nature.LONELY, Nature.ADAMANT, Nature.NAUGHTY, Nature.BRAVE};
+                Nature[] weakAttack = {Nature.BOLD, Nature.ADAMANT, Nature.NAUGHTY, Nature.BRAVE};
+
+                if (nature == checkNatureInList(strongAttack)) { return favorable; }
+                if (nature == checkNatureInList(weakAttack)) { return unfavorable; }
+            }
+
+            case 2: // Defense
+            {
+                Nature[] strongDefense = {Nature.BOLD, Nature.IMPISH, Nature.LAX, Nature.RELAXED};
+                Nature[] weakDefense = {Nature.LONELY, Nature.MILD, Nature.GENTLE, Nature.HASTY};
+
+                if (nature == checkNatureInList(strongDefense)) { return favorable; }
+                if (nature == checkNatureInList(weakDefense)) { return unfavorable; }
+            }
+
+            case 3: // Special Attack
+            {
+                Nature[] strongSpecialAttack = {Nature.MODEST, Nature.MILD, Nature.RASH, Nature.QUIET};
+                Nature[] weakSpecialAttack = {Nature.ADAMANT, Nature.IMPISH, Nature.CAREFUL, Nature.JOLLY};
+
+                if (nature == checkNatureInList(strongSpecialAttack)) { return favorable; }
+                if (nature == checkNatureInList(weakSpecialAttack)) { return unfavorable; }
+            }
+
+            case 4: // Special Defense
+            {
+                Nature[] strongSpecialDefense = {Nature.CALM, Nature.GENTLE, Nature.CAREFUL, Nature.SASSY};
+                Nature[] weakSpecialDefense = {Nature.NAUGHTY, Nature.LAX, Nature.RASH, Nature.NAIVE};
+
+                if (nature == checkNatureInList(strongSpecialDefense)) { return favorable; }
+                if (nature == checkNatureInList(weakSpecialDefense)) { return unfavorable; }
+            }
+
+            case 5: // Speed
+            {
+                Nature[] strongSpeed = {Nature.TIMID, Nature.HASTY, Nature.JOLLY, Nature.NAIVE};
+                Nature[] weakSpeed = {Nature.BRAVE, Nature.RELAXED, Nature.QUIET, Nature.SASSY};
+
+                if (nature == checkNatureInList(strongSpeed)) { return favorable; }
+                if (nature == checkNatureInList(weakSpeed)) { return unfavorable; }
+            }
         }
+
+        return neutral;
+    }
+
+    private Nature checkNatureInList(Nature[] natureList)
+    {
+        for (Nature nature : natureList)
+        {
+            if (this.nature == nature) return nature;
+        }
+        return null;
     }
 }
