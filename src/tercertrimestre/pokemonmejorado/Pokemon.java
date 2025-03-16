@@ -9,7 +9,7 @@ public class Pokemon implements PokemonData
     private String name = PokemonData.name;
     private int level = 1;
 
-    private Nature nature;
+    private Nature nature = selectRandomNature();
 
     private int healthPoints = calculateHealthPoints();
     private int attack = calculateOtherStat(1);
@@ -37,6 +37,14 @@ public class Pokemon implements PokemonData
     private int evSpeed;
 
     private int[] evList = {evHealthPoints, evAttack, evDefense, evSpecialAttack, evSpecialDefense, evSpeed};
+
+    public Pokemon(PokemonData pokemonData, String name, int level, Nature nature)
+    {
+        this.pokemonData = pokemonData;
+        this.name = name;
+        this.level = level;
+        this.nature = nature;
+    }
 
     /// METHODS
     private int calculateHealthPoints()
@@ -124,5 +132,12 @@ public class Pokemon implements PokemonData
             if (this.nature == nature) return nature;
         }
         return null;
+    }
+
+    private Nature selectRandomNature()
+    {
+        Nature[] allNatures = {Nature.HARDY, Nature.LONELY, Nature.BRAVE, Nature.ADAMANT, Nature.NAUGHTY, Nature.BOLD, Nature.DOCILE, Nature.RELAXED, Nature.IMPISH, Nature.LAX, Nature.TIMID, Nature.HASTY, Nature.SERIOUS, Nature.JOLLY, Nature.NAIVE, Nature.MODEST, Nature.MILD, Nature.QUIET, Nature.BASHFUL, Nature.RASH, Nature.CALM, Nature.GENTLE, Nature.SASSY, Nature.CAREFUL, Nature.QUIRKY};
+        int randomNatureNumber = Utils.generateRandomNumber(0, 25);
+        return allNatures[randomNatureNumber];
     }
 }
