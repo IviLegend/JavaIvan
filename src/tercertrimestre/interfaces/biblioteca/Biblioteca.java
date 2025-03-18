@@ -21,7 +21,16 @@ public class Biblioteca
 
     public void prestarPublicacion(String codigo)
     {
-
+        for (int i = 0; i < inventario.size(); i++)
+        {
+            if (inventario.get(i) instanceof Prestable)
+            {
+                if (inventario.get(i).getCodigo().equals(codigo))
+                {
+                    ((Prestable) inventario.get(i)).prestar();
+                }
+            }
+        }
     }
 
     public void mostrarInventario()
