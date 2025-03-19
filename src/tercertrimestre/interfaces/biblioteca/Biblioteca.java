@@ -21,13 +21,13 @@ public class Biblioteca
 
     public void prestarPublicacion(String codigo)
     {
-        for (int i = 0; i < inventario.size(); i++)
+        for (Publicacion publicacion : inventario)
         {
-            if (inventario.get(i) instanceof Prestable)
+            if (publicacion instanceof Prestable)
             {
-                if (inventario.get(i).getCodigo().equals(codigo))
+                if (publicacion.getCodigo().equals(codigo))
                 {
-                    ((Prestable) inventario.get(i)).prestar();
+                    ((Prestable) publicacion).prestar();
                 }
             }
         }
@@ -37,7 +37,7 @@ public class Biblioteca
     {
         for (int i = 0; i < inventario.size(); i++)
         {
-            System.out.printf("%d. %s", i+1, inventario.get(i));
+            System.out.printf("%d. %s", i + 1, inventario.get(i));
         }
     }
 }
