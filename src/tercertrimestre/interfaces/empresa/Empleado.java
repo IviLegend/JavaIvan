@@ -1,6 +1,6 @@
 package tercertrimestre.interfaces.empresa;
 
-public class Empleado
+public class Empleado implements OperacionesHacienda
 {
     /// ATRIBUTOS
     private String nombre;
@@ -52,6 +52,12 @@ public class Empleado
         else {IRPF = 40; }
 
         return sueldoBrutoMensual - (sueldoBrutoMensual * (IRPF / 100));
+    }
+
+    @Override
+    public double declarar()
+    {
+        return (sueldoBrutoMensual * 0.1);
     }
 
     // Getters y Setters
