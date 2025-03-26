@@ -46,10 +46,10 @@ public class Empleado implements OperacionesHacienda
 
     public double calcularSueldoNeto()
     {
-        double IRPF = 0;
+        double IRPF;
         if (sueldoBrutoMensual < 12000) { IRPF = 20; }
         else if (sueldoBrutoMensual < 25000) { IRPF = 30; }
-        else {IRPF = 40; }
+        else { IRPF = 40; }
 
         return sueldoBrutoMensual - (sueldoBrutoMensual * (IRPF / 100));
     }
