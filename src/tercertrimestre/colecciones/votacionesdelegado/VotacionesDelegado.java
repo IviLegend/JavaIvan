@@ -8,7 +8,7 @@ public class VotacionesDelegado
     {
         VotacionesDelegado votacionesDelegado = new VotacionesDelegado();
 
-        Map<Persona, Persona> votos = new HashMap<>();
+        Map<Persona, Persona> votos;
         Map<Persona, Integer> resultados = new HashMap<>();
 
         Persona juan = new Persona("Juan", "123A");
@@ -34,31 +34,44 @@ public class VotacionesDelegado
         Persona alejandra = new Persona("Alejandra", "212T");
 
         // Definimos a los candidatos
-        Set<Persona> candidatos = new TreeSet<>();
+        Set<Persona> candidatos;
         Persona[] arrayCandidatos = {juan, manu, enma};
         candidatos = votacionesDelegado.parseArraySet(arrayCandidatos);
 
         // Definimos a los votantes
-        Set<Persona> votantes = new HashSet<>();
+        Set<Persona> votantes;
         Persona[] arrayVotantes = {juan, manu, enma, luis, ana, carla, pedro, sofia, diego, maria, pablo, lucia, esteban, valeria, ricardo, fernanda, javier, monica, sebastian, alejandra};
         votantes = votacionesDelegado.parseArraySet(arrayVotantes);
 
         // Mostramos los candidatos
+        System.out.println("== CANDIDATOS ==");
         votacionesDelegado.mostrarCandidatos(candidatos, false, resultados);
+        System.out.println();
 
         // Creamos las entradas de cada candidato en el mapa
-        resultados.put(juan, 0);
-        resultados.put(manu, 0);
-        resultados.put(enma, 0);
+        votacionesDelegado.inicializarMapaResultados(arrayCandidatos, resultados);
 
         // Generamos los votos
         votos = votacionesDelegado.generarVotos(votantes, candidatos, resultados);
 
         // Mostrar los votos de cada persona.
+        System.out.println("== VOTOS ==");
         votacionesDelegado.mostrarVotos(votantes, votos);
+        System.out.println();
 
         // Mostramos los candidatos con resultados
+        System.out.println("== RESULTADOS ==");
         votacionesDelegado.mostrarCandidatos(candidatos, true, resultados);
+        System.out.println("Votos totales: " + arrayVotantes.length);
+        System.out.println();
+    }
+
+    public void inicializarMapaResultados(Persona[] candidatos, Map<Persona, Integer> mapaResultados)
+    {
+        for (Persona candidato : candidatos)
+        {
+            mapaResultados.put(candidato, 0);
+        }
     }
 
     public void mostrarVotos(Set<Persona> votantes, Map<Persona, Persona> mapaVotos)
@@ -69,10 +82,7 @@ public class VotacionesDelegado
     public Set<Persona> parseArraySet(Persona[] array)
     {
         Set<Persona> set = new HashSet<>();
-        for (int i = 0; i < array.length; i++)
-        {
-            set.add(array[i]);
-        }
+        Collections.addAll(set, array);
         return set;
     }
 
@@ -126,7 +136,7 @@ public class VotacionesDelegado
     {
         if (min > max)
         {
-            throw new IllegalArgumentException("The minimum value cannot be lower than the maximum value.");
+            throw new IllegalArgumentException("El valor mínimo no puede ser mayor que el máximo.");
         }
 
         Random random = new Random();

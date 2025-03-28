@@ -1,9 +1,6 @@
 package tercertrimestre.colecciones.juegocartas;
 
-import java.util.Collections;
-import java.util.Scanner;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 
 public class Principal
 {
@@ -38,10 +35,13 @@ public class Principal
 
                 case 2:
                 {
-                    for (int carta = 0; carta < manoJugador.size(); carta++)
+                    Iterator iterator = manoJugador.iterator();
+
+                    while (iterator.hasNext())
                     {
-                        System.out.println();
+                        System.out.println(iterator.next());
                     }
+
                     break;
                 }
 
