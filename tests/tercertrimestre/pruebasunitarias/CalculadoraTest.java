@@ -54,11 +54,17 @@ class CalculadoraTest
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {2, 3, 5})
+    @ValueSource(ints = {2, 3, 5, 0, -1, 100, 15})
     public void testParMultiplesNumeros(int numero)
     {
         Calculadora calc = new Calculadora();
         boolean resultadoEsPar = calc.esPar(numero);
-        assertTrue(resultadoEsPar);
+        switch (numero)
+        {
+            // Pares
+            case 2, 0, 100 -> assertTrue(resultadoEsPar);
+            // Impares
+            case 3, 5, -1, 15 -> assertFalse(resultadoEsPar);
+        }
     }
 }

@@ -4,7 +4,7 @@ public class Calculadora
 {
     public int suma(int a, int b)
     {
-        return a + b + 1;
+        return a + b;
     }
 
     public int resta(int a, int b)
@@ -14,10 +14,10 @@ public class Calculadora
 
     public int multiplicacion(int a, int b)
     {
-        return a / b;
+        return a * b;
     }
 
-    public int division(int a, int b)
+    public double division(double a, double b)
     {
         if (b == 0)
         {
