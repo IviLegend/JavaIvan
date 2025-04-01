@@ -2,7 +2,8 @@ package tercertrimestre.pruebasunitarias;
 
 import org.junit.jupiter.api.*;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class CalculadoraTest2
 {
@@ -15,12 +16,6 @@ class CalculadoraTest2
         System.out.println("**** Empezamos con los tests *************************");
     }
 
-    @AfterAll
-    static void despuesDeTodos()
-    {
-        System.out.println("**** Terminamos con los tests *************************");
-    }
-
     @BeforeEach
     void antesDeCadaTest()
     {
@@ -31,6 +26,12 @@ class CalculadoraTest2
     void despuesDeCadaTest()
     {
         System.out.println("**** Fin del test *************************");
+    }
+
+    @AfterAll
+    static void despuesDeTodos()
+    {
+        System.out.println("**** Terminamos con los tests *************************");
     }
 
     @Test

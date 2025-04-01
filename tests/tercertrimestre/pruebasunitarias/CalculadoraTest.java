@@ -59,6 +59,10 @@ class CalculadoraTest
     {
         Calculadora calc = new Calculadora();
         boolean resultadoEsPar = calc.esPar(numero);
-        assertTrue(resultadoEsPar);
+        switch (numero)
+        {
+            case 2 -> assertTrue(resultadoEsPar);
+            case 3, 5 -> assertFalse(resultadoEsPar);
+        }
     }
 }
