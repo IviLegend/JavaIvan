@@ -1,4 +1,4 @@
-package tercertrimestre.controldeerrores;
+package tercertrimestre.controldeerrores.dni;
 
 public class Persona
 {
