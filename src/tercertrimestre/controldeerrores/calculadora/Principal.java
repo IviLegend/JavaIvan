@@ -32,6 +32,6 @@ public class Principal
 
     private double division(int a, int b)
     {
-        return a / b;
+        return (double) a / b;
     }
 }

@@ -1,0 +1,3 @@
+Bulbasaur: 10 puntos
+Charmander: 15 puntos
+Squirtle: 12 puntos
