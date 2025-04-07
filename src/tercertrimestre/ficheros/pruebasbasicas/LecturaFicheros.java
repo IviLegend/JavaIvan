@@ -1,4 +1,4 @@
-package tercertrimestre.ficheros;
+package tercertrimestre.ficheros.pruebasbasicas;
 
 import java.io.IOException;
 import java.nio.file.Files;

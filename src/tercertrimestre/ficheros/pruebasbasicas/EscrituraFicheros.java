@@ -1,4 +1,4 @@
-package tercertrimestre.ficheros;
+package tercertrimestre.ficheros.pruebasbasicas;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -9,7 +9,7 @@ public class EscrituraFicheros
 {
     public static void main(String[] args)
     {
-        Path rutaAlFichero = Paths.get("ficherogrande.txt");
+        Path rutaAlFichero = Paths.get("cosas/ficherogrande.txt");
 
         try
         {
