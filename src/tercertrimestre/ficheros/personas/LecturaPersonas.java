@@ -37,11 +37,16 @@ public class LecturaPersonas
             }
 
             // Añadir personas
+            Files.writeString(rutaArchivo, "\n", StandardOpenOption.APPEND);
             for (Persona persona : listaAAnadir)
             {
                 String infoPersona = persona.toCsv();
-                Files.writeString(rutaArchivo, "\n", StandardOpenOption.APPEND);
                 Files.writeString(rutaArchivo, infoPersona, StandardOpenOption.APPEND);
+
+                if (!(persona.equals(listaAAnadir.getLast())))
+                {
+                    Files.writeString(rutaArchivo, "\n", StandardOpenOption.APPEND);
+                }
             }
 
             // Extraer personas
