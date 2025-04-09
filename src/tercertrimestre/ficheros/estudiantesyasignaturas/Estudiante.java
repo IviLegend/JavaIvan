@@ -17,6 +17,6 @@ public class Estudiante
     @Override
     public String toString()
     {
-        return String.format("%s, %s", nombre, listaAsignaturas);
+        return String.format("%s: %s", nombre, listaAsignaturas);
     }
 }
