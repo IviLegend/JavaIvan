@@ -37,11 +37,16 @@ public class LecturaPersonas
             }
 
             // Añadir personas
+            Files.writeString(rutaArchivo, "\n", StandardOpenOption.APPEND);
             for (Persona persona : listaAAnadir)
             {
                 String infoPersona = persona.toCsv();
-                Files.writeString(rutaArchivo, "\n", StandardOpenOption.APPEND);
                 Files.writeString(rutaArchivo, infoPersona, StandardOpenOption.APPEND);
+
+                if (!(persona.equals(listaAAnadir.getLast())))
+                {
+                    Files.writeString(rutaArchivo, "\n", StandardOpenOption.APPEND);
+                }
             }
 
             // Extraer personas
@@ -58,10 +63,17 @@ public class LecturaPersonas
             throw new RuntimeException(e);
         }
 
+        double edadMedia = 0;
+
         for (Persona persona : listaPersonas)
         {
+            edadMedia += persona.getEdad();
             System.out.println(persona);
         }
+
+        edadMedia /= listaPersonas.size();
+
+        System.out.println("Edad media: " + edadMedia);
     }
 
     public static void crearDirectorios(Path ruta) throws IOException
