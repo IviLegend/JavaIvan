@@ -19,7 +19,7 @@ public class LecturaPersonas
         List<Persona> listaPersonas = new ArrayList<>();
 
         Path rutaCarpetas = Paths.get("res/ficheros/personas/exportaciones");
-        Path rutaArchivo = Paths.get("res/ficheros/personas/exportaciones/persona.csv");
+        Path rutaArchivo = Paths.get("persona.csv");
 
         List<Persona> listaAAnadir = new ArrayList<>();
         Persona manolo = new Persona("Manolo", "Gutiérrez", 80, "IJKL");
