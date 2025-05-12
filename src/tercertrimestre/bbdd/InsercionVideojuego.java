@@ -20,7 +20,10 @@ public class InsercionVideojuego
             System.out.println("Conexión exitosa");
 
             Statement sentencia = conexion.createStatement();
-            agregarVideojuego(conexion);
+            while (true)
+            {
+                agregarVideojuego(conexion);
+            }
         }
         catch (SQLException e)
         {
