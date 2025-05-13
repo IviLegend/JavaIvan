@@ -26,11 +26,7 @@ public class ConsultaVideojuegos
 
             while(resultSet.next())
             {
-                int id = resultSet.getInt("id");
-                String nombre = resultSet.getString("nombre");
-                double rating = resultSet.getDouble("rating");
-                LocalDateTime fecha = resultSet.getObject("fecha_lanzamiento", LocalDateTime.class);
-                Videojuego videojuego = new Videojuego(id, nombre, rating, fecha);
+                Videojuego videojuego = getVideojuego(resultSet);
                 listaVideojuegos.add(videojuego);
                 System.out.println(videojuego);
             }
@@ -47,11 +43,21 @@ public class ConsultaVideojuegos
                 }
             }
 
-            System.out.println("Media: " + (totalNota / totalJuegosLanzados));
+            System.out.printf("Media: %.2f", (totalNota / totalJuegosLanzados));
         }
         catch (SQLException e)
         {
             System.err.printf("Error al operar con la BBDD: %s\n", e);
         }
+    }
+
+    private static Videojuego getVideojuego(ResultSet resultSet) throws SQLException
+    {
+        int id = resultSet.getInt("id");
+        String nombre = resultSet.getString("nombre");
+        double rating = resultSet.getDouble("rating");
+        LocalDateTime fecha = resultSet.getObject("fecha_lanzamiento", LocalDateTime.class);
+        Videojuego videojuego = new Videojuego(id, nombre, rating, fecha);
+        return videojuego;
     }
 }

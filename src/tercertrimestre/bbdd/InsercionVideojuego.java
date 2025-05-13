@@ -19,7 +19,6 @@ public class InsercionVideojuego
             Connection conexion = DriverManager.getConnection(url, user, password);
             System.out.println("Conexión exitosa");
 
-            Statement sentencia = conexion.createStatement();
             while (true)
             {
                 agregarVideojuego(conexion);
