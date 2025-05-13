@@ -21,6 +21,11 @@ public class Videojuego
     @Override
     public String toString()
     {
+        return String.format("%d. %s (%.2f)", id, nombre, rating);
+    }
+
+    public String getFecha()
+    {
         String fechaFormateada = "No lanzado";
 
         if (fecha_lanzamiento != null)
@@ -28,6 +33,6 @@ public class Videojuego
             fechaFormateada = fecha_lanzamiento.format(DateTimeFormatter.ofPattern("dd/MM/yyyy | hh:mm:ss"));
         }
 
-        return String.format("%d. %s (%.2f) [%s]", id, nombre, rating, fechaFormateada);
+        return fechaFormateada;
     }
 }
