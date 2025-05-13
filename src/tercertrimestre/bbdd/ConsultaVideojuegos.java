@@ -56,7 +56,8 @@ public class ConsultaVideojuegos
         int id = resultSet.getInt("id");
         String nombre = resultSet.getString("nombre");
         double rating = resultSet.getDouble("rating");
+        boolean lanzado = resultSet.getBoolean("lanzado");
         LocalDateTime fecha = resultSet.getObject("fecha_lanzamiento", LocalDateTime.class);
-        return new Videojuego(id, nombre, rating, fecha);
+        return new Videojuego(id, nombre, rating, lanzado, fecha);
     }
 }

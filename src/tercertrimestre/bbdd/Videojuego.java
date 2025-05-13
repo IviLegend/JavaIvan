@@ -7,21 +7,27 @@ public class Videojuego
 {
     public int id;
     public String nombre;
+    public boolean lanzado;
     public double rating;
     public LocalDateTime fecha_lanzamiento;
 
-    public Videojuego(int id, String nombre, double rating, LocalDateTime fecha_lanzamiento)
+    public Videojuego(int id, String nombre, double rating, boolean lanzado, LocalDateTime fecha_lanzamiento)
     {
         this.id = id;
         this.nombre = nombre;
         this.rating = rating;
         this.fecha_lanzamiento = fecha_lanzamiento;
+        this.lanzado = lanzado;
     }
 
     @Override
     public String toString()
     {
-        return String.format("%d. %s (%.2f)", id, nombre, rating);
+        if (lanzado)
+        {
+            return String.format("%d. %s (%.2f)", id, nombre, rating);
+        }
+        return String.format("%d. %s (n/a)", id, nombre);
     }
 
     public String getFecha()
